@@ -1,6 +1,6 @@
 FROM debian:buster
  
-ENV I2P_VERSION 0.9.47-1ubuntu1
+ENV I2P_VERSION 0.9.49-1ubuntu1
 ENV I2P_DIR /usr/share/i2p
 ENV DEBIAN_FRONTEND noninteractive
 ENV LANG en_US.UTF-8
@@ -28,10 +28,12 @@ RUN apt-get -y update && \
 	  apt-transport-https \
       ca-certificates \
 	  gnupg && \
+      gnupg  curl && \
     apt-get clean
  
 RUN echo "deb https://deb.i2p2.de/ buster main" > /etc/apt/sources.list.d/i2p.list && \
-    apt-key adv --no-tty --keyserver hkp://pgp.mit.edu --recv-key 0x67ECE5605BCF1346
+    curl https://geti2p.net/_static/i2p-debian-repo.key.asc > i2p2.de.asc && \
+    apt-key add i2p2.de.asc
 
 RUN apt-get -y update && \
     apt-get -y install \
