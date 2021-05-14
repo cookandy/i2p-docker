@@ -27,8 +27,7 @@ RUN apt-get -y update && \
     apt-get -y install \
 	  apt-transport-https \
       ca-certificates \
-	  gnupg && \
-      gnupg  curl && \
+      gnupg curl && \
     apt-get clean
  
 RUN echo "deb https://deb.i2p2.de/ buster main" > /etc/apt/sources.list.d/i2p.list && \
